@@ -11,7 +11,10 @@ class WelcomeCanvas extends Component {
 
   render() {
     return (
-      <div id="svg-container" className="row mb-5 view-height">
+      <div id="svg-container" className="row mb-5 view-height d-flex justify-content-center">
+        <span className="raise-header text-center position-header p-4 bg-white rounded">
+          <h1>Welcome to Stroke with Friends</h1>
+        </span>
         <svg id="welcome-canvas"></svg>
       </div>
     )
