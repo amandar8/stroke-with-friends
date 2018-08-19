@@ -16,6 +16,8 @@ const canvas = d3.select("#welcome-canvas");
 canvas.style("width", width);
 canvas.style("height", height);
 
+const rectList = [];
+
 function newRectangle() {
   const colors = ['violet', 'red', 'blue', 'green', 'orange', 'brown', 'yellow'];
   const rectProps = {
@@ -25,15 +27,24 @@ function newRectangle() {
     w: Math.floor(Math.random() * 100),
     fill: colors[Math.floor(Math.random() * 7)]
   };
-
-  const addRect = new Rectangle(rectProps);
-
-  canvas.append("rect")
-        .attr("x", addRect.x)             
-        .attr("y", addRect.y)
-        .attr("width", addRect.w)
-        .attr("height", addRect.h) 
-        .attr("fill", addRect.fill)
+  rectList.push(new Rectangle(rectProps));
 }
 
-setInterval(newRectangle, 500);
+function renderRectList() {
+  canvas.selectAll('*').remove();
+  if (rectList.length > 20) {
+    rectList.shift();
+  }
+  rectList.forEach(rect => {
+    canvas.append('rect')
+      .attr("x", rect.x)
+      .attr("y", rect.y)
+      .attr("height", rect.h)
+      .attr("width", rect.w)
+      .attr("fill", rect.fill)
+  });
+}
+
+setInterval(newRectangle, 100);
+
+setInterval(renderRectList, 100);
