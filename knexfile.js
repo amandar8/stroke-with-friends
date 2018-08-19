@@ -4,7 +4,7 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: process.env.DATABASE
+    connection: 'postgres://localhost/strokes'
   },
 
   production: {

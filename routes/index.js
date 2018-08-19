@@ -19,4 +19,8 @@ router.post('/', function(req, res, next) {
   }
 });
 
+router.post('/', function(req, res, next) {
+  const user = {}
+});
+
 module.exports = router;
