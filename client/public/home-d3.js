@@ -5,6 +5,7 @@ class Rectangle {
     this.h = props.h;
     this.w = props.w;
     this.fill = props.fill;
+    this.opacity = props.opacity;
   }
 }
 
@@ -25,23 +26,28 @@ function newRectangle() {
     y: Math.floor(Math.random() * height),
     h: Math.floor(Math.random() * 100),
     w: Math.floor(Math.random() * 100),
-    fill: colors[Math.floor(Math.random() * 7)]
+    fill: colors[Math.floor(Math.random() * 7)],
+    opacity: 1
   };
   rectList.push(new Rectangle(rectProps));
 }
 
 function renderRectList() {
   canvas.selectAll('*').remove();
-  if (rectList.length > 20) {
+  if (rectList.length > 40) {
     rectList.shift();
   }
+  rectList.forEach(rect => {
+    rect.opacity -= 0.05;
+  });
   rectList.forEach(rect => {
     canvas.append('rect')
       .attr("x", rect.x)
       .attr("y", rect.y)
       .attr("height", rect.h)
       .attr("width", rect.w)
-      .attr("fill", rect.fill)
+      .style("fill", rect.fill)
+      .style("opacity", rect.opacity)
   });
 }
 
