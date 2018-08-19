@@ -1,14 +1,3 @@
-class Rectangle {
-  constructor(props) {
-    this.x = props.x;
-    this.y = props.y;
-    this.h = props.h;
-    this.w = props.w;
-    this.fill = props.fill;
-    this.opacity = props.opacity;
-  }
-}
-
 const svgContainer = document.getElementById("svg-container");
 const height = svgContainer.clientHeight;
 const width = svgContainer.clientWidth;
@@ -19,17 +8,18 @@ canvas.style("height", height);
 
 const rectList = [];
 
+
 function newRectangle() {
   const colors = ['violet', 'red', 'blue', 'green', 'orange', 'brown', 'yellow'];
   const rectProps = {
     x: Math.floor(Math.random() * width),
     y: Math.floor(Math.random() * height),
-    h: Math.floor(Math.random() * 100),
-    w: Math.floor(Math.random() * 100),
+    height: Math.floor(Math.random() * 100),
+    width: Math.floor(Math.random() * 100),
     fill: colors[Math.floor(Math.random() * 7)],
     opacity: 1
   };
-  rectList.push(new Rectangle(rectProps));
+  rectList.push(rectProps);
 }
 
 function renderRectList() {
@@ -37,20 +27,28 @@ function renderRectList() {
   if (rectList.length > 40) {
     rectList.shift();
   }
+
+  let rectangles = canvas.selectAll('rect')
+  .data(rectList)
+  .enter()
+  .append('rect');
+
+  let rectAttrs = rectangles
+  .attr("x", function(d) {return d.x})
+  .attr("y", function(d) {return d.y})
+  .attr("height", function(d) {return d.height})
+  .attr("width", function(d) {return d.width})
+  .style("fill", function(d) {return d.fill})
+  .style("opacity", function(d) {return d.opacity})
+
+}
+
+function fader() {
   rectList.forEach(rect => {
     rect.opacity -= 0.05;
-  });
-  rectList.forEach(rect => {
-    canvas.append('rect')
-      .attr("x", rect.x)
-      .attr("y", rect.y)
-      .attr("height", rect.h)
-      .attr("width", rect.w)
-      .style("fill", rect.fill)
-      .style("opacity", rect.opacity)
   });
 }
 
 setInterval(newRectangle, 100);
-
 setInterval(renderRectList, 100);
+setInterval(fader, 100);
