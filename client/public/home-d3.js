@@ -8,7 +8,6 @@ canvas.style("height", height);
 
 const rectList = [];
 
-
 function newRectangle() {
   const colors = ['violet', 'red', 'blue', 'green', 'orange', 'brown', 'yellow'];
   const rectProps = {
@@ -52,3 +51,4 @@ function fader() {
 setInterval(newRectangle, 100);
 setInterval(renderRectList, 100);
 setInterval(fader, 100);
+
