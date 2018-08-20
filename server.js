@@ -12,8 +12,8 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 
-const indexRoute = require('./routes/index');
-const usersRoute = require('./routes/users');
+// const indexRoute = require('./routes/index');
+// const usersRoute = require('./routes/users');
 
 app.set('view engine', 'html');
 
@@ -23,8 +23,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.use('/', indexRoute);
-app.use('/users', usersRoute);
+// app.use('/', indexRoute);
+// app.use('/users', usersRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
