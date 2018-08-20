@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Loginmodal from "./loginModal";
+import './login.css';
 
-class Login extends Component{
+class Loginbutton extends Component{
   constructor(props){
     super(props);
 
@@ -57,8 +58,8 @@ class Login extends Component{
 
   render() {
     return(
-      <div>
-      <button type="button" className="btn btn-primary btn-md" id="login-button" data-toggle="modal" data-target="#ModalLoginForm">
+      <div className="login-btn-container">
+      <button type="button" className="col-3 btn btn-primary btn-lg" id="login-button" data-toggle="modal" data-target="#ModalLoginForm">
         Log In
       </button>
       <Loginmodal />
@@ -67,4 +68,4 @@ class Login extends Component{
   }
 }
 
-export default Login;
+export default Loginbutton;

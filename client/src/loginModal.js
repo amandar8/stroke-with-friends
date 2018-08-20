@@ -2,8 +2,7 @@ import React, { Component } from "react";
 
 class Loginmodal extends Component{
   constructor(props){
-    super(props);
-
+    super(props)
   }
 
   render() {
