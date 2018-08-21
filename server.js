@@ -8,23 +8,24 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 const port = process.env.PORT || 5000;
 
 const app = express();
 
 // const indexRoute = require('./routes/index');
-// const usersRoute = require('./routes/users');
+const usersRoute = require('./routes/users');
 
-app.set('view engine', 'html');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(logger('dev'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(methodOverride("_method"));
 
 // app.use('/', indexRoute);
-// app.use('/users', usersRoute);
+app.use('/users', usersRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -41,10 +42,10 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  res.sendStatus(err.status || 500);
 });
 
 app.listen(port);
+console.log(`Listening on port: ${port}`);
 
 module.exports = app;
