@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import WelcomeCanvas from './WelcomeCanvas';
 import './App.css';
+// import Login from './loginButton';
 
 class App extends Component {
   render() {
