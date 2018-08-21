@@ -10,13 +10,8 @@ class Loginmodal extends Component{
     return(
         <div className="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div className="modal-dialog cascading-modal" role="document">
-            
             <div className="modal-content">
-    
-               
                 <div className="modal-c-tabs">
-    
-                   
                     <ul className="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
                         <li className="nav-item">
                             <a className="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i className="fa fa-user mr-1"></i> Login</a>
@@ -25,14 +20,10 @@ class Loginmodal extends Component{
                             <a className="nav-link" data-toggle="tab" href="#panel8" role="tab"><i className="fa fa-user-plus mr-1"></i> Register</a>
                         </li>
                     </ul>
-    
-                   
                     <div className="tab-content">
-                       
                         <div className="tab-pane fade in show active" id="panel7" role="tabpanel">
-    
-                            
                             <div className="modal-body mb-1">
+                                <form className="login-form" action='' method="POST">
                                 <div className="md-form form-sm mb-5">
                                     <i className="fa fa-envelope prefix"></i>
                                     <input type="email" id="modalLRInput10" className="form-control form-control-sm validate"/>
@@ -47,6 +38,7 @@ class Loginmodal extends Component{
                                 <div className="text-center mt-2">
                                     <button className="btn btn-info">Log in <i className="fa fa-sign-in ml-1"></i></button>
                                 </div>
+                                </form>
                             </div>
                             
                             <div className="modal-footer">
