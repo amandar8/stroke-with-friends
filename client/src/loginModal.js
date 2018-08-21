@@ -8,7 +8,7 @@ class Loginmodal extends Component{
 
   render() {
     return(
-        <div className="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div className="modal fade" id="modalLRForm" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div className="modal-dialog cascading-modal" role="document">
             <div className="modal-content">
                 <div className="modal-c-tabs">
@@ -27,13 +27,13 @@ class Loginmodal extends Component{
                                 <div className="md-form form-sm mb-5">
                                     <i className="fa fa-envelope prefix"></i>
                                     <input type="email" id="modalLRInput10" className="form-control form-control-sm validate"/>
-                                    <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
+                                    <label data-error="wrong" data-success="right" htmlFor="modalLRInput10">Your email</label>
                                 </div>
     
                                 <div className="md-form form-sm mb-4">
                                     <i className="fa fa-lock prefix"></i>
                                     <input type="password" id="modalLRInput11" className="form-control form-control-sm validate"/>
-                                    <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
+                                    <label data-error="wrong" data-success="right" htmlFor="modalLRInput11">Your password</label>
                                 </div>
                                 <div className="text-center mt-2">
                                     <button className="btn btn-info">Log in <i className="fa fa-sign-in ml-1"></i></button>
@@ -60,19 +60,19 @@ class Loginmodal extends Component{
                                 <div className="md-form form-sm mb-5">
                                     <i className="fa fa-envelope prefix"></i>
                                     <input type="email" id="modalLRInput12" className="form-control form-control-sm validate"/>
-                                    <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>
+                                    <label data-error="wrong" data-success="right" htmlFor="modalLRInput12">Your email</label>
                                 </div>
     
                                 <div className="md-form form-sm mb-5">
                                     <i className="fa fa-lock prefix"></i>
                                     <input type="password" id="modalLRInput13" className="form-control form-control-sm validate"/>
-                                    <label data-error="wrong" data-success="right" for="modalLRInput13">Your password</label>
+                                    <label data-error="wrong" data-success="right" htmlFor="modalLRInput13">Your password</label>
                                 </div>
     
                                 <div className="md-form form-sm mb-4">
                                     <i className="fa fa-lock prefix"></i>
                                     <input type="password" id="modalLRInput14" className="form-control form-control-sm validate"/>
-                                    <label data-error="wrong" data-success="right" for="modalLRInput14">Repeat password</label>
+                                    <label data-error="wrong" data-success="right" htmlFor="modalLRInput14">Repeat password</label>
                                 </div>
     
                                 <div className="text-center form-sm mt-2">
