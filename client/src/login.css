@@ -1,21 +1,42 @@
 .btn-primary {
-  color: #3CB371;
-  background-color: white;
+  color: #3CB371 !important;
+  background-color: white !important;
   border: 3px solid;
   border-color: #FFFF00;
-  /* border-radius: 24px; */
-  font-weight: 700;
   font-family: 'Rock Salt', cursive;
-  font-size: 20px;
-  padding: 8px 14px;
+}
+
+.btn.btn-lg{
+  padding: 1rem 2rem;
 }
 
 .btn-primary:hover {
-  color: #DC143C;
+  color: #DC143C !important;
   background-color: white;
   border-color: #FFA500;
 }
 
 .login-btn-container {
   margin-top: 20px;
+}
+
+/* a {
+  color: white;
+  font-family: 'Rock Salt', cursive;
+} */
+/* a:hover{
+  color: white;
+  background-color: gray;
+} */
+.nav-link{
+  font-family: 'Rock Salt', cursive;
+  color: white;
+}
+.nav-link:hover {
+  color:white;
+  font-size: 110%;
+}
+
+.btn-info{
+  font-family: 'Rock Salt', cursive;
 }

@@ -59,7 +59,7 @@ class Loginbutton extends Component{
   render() {
     return(
       <div className="login-btn-container">
-      <button type="button" className="col-3 btn btn-primary btn-lg" id="login-button" data-toggle="modal" data-target="#ModalLoginForm">
+      <button type="button" className="btn btn-lg btn-primary" id="login-button" data-toggle="modal" data-target="#modalLRForm">
         Log In
       </button>
       <Loginmodal />
