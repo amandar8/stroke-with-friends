@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './WelcomeCanvas.css';
-import LoginModal from './LoginModal';
+import Login from './Login.js';
 import * as d3 from "d3";
 
 class WelcomeCanvas extends Component {
@@ -84,7 +84,7 @@ class WelcomeCanvas extends Component {
             Log In
             </button>
           </div>
-          <LoginModal />
+          <Login />
         </span>
         <svg id="welcome-canvas"></svg>
       </div>
