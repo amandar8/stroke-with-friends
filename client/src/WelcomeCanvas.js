@@ -3,8 +3,6 @@ import './WelcomeCanvas.css';
 import LoginModal from './LoginModal';
 import * as d3 from "d3";
 
-import { BrowserRouter as Route} from "react-router-dom"; 
-
 class WelcomeCanvas extends Component {
   constructor(props){
     super(props)
