@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import WelcomeCanvas from './WelcomeCanvas';
 import Admin from './Admin';
+import Canvas from './canvas'
 import './App.css';
 // import Login from './loginButton';
 
@@ -12,10 +13,11 @@ class App extends Component {
         <div id="app-container" className="container-fluid">
           <div className="row">
             <div className="col-12">
-              <Route exact path="/" component={WelcomeCanvas} />
+              {/* <Route exact path="/" component={WelcomeCanvas} /> */}
+              <Canvas/>
             </div>
           </div>
-          <Admin />
+          {/* <Admin /> */}
         </div>
       </Router>
     );
