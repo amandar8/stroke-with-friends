@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './WelcomeCanvas.css';
-import Loginbutton from './loginButton';
+import Loginmodal from './loginModal';
 import * as d3 from "d3";
-
 
 import { BrowserRouter as Route} from "react-router-dom"; 
 
@@ -82,8 +81,12 @@ class WelcomeCanvas extends Component {
         <span className="raise-header text-center position-header p-4 bg-white rounded">
           <h2>Welcome to...</h2>
           <h1>Stroke with Friends</h1>
-          <Loginbutton />
-          {/* <Route path='/loginButton' component={Login}/> */}
+          <div className="login-btn-container">
+            <button type="button" className="btn btn-lg btn-primary" id="login-button" data-toggle="modal" data-target="#modalLRForm">
+            Log In
+            </button>
+          </div>
+          <Loginmodal />
         </span>
         <svg id="welcome-canvas"></svg>
       </div>
