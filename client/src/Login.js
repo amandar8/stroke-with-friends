@@ -25,7 +25,6 @@ class LoginModal extends Component{
 
   onSubmit = event => {
     event.preventDefault();
-    // this.props.history.push("/thank-you");
     }
 
   validateForm() {
@@ -47,12 +46,8 @@ class LoginModal extends Component{
     userData.password = this.state.password;
     console.log('New user data', JSON.stringify(userData));
 
-    // axios.post('http://localhost:5000/auth/register', userData)
-    // .then(res => {
-    //     console.log('Res', res);
-    // });
 
-    fetch('/auth/register', {
+    fetch(`/auth/register`, {
         method: 'POST',
         mode: 'cors',
         headers: {
