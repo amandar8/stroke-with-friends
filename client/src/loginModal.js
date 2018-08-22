@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import {withRouter} from 'react-router-dom';
+import {withRouter, BrowserRouter} from 'react-router-dom';
 import './login.css';
-
 
 class Loginmodal extends Component{
   constructor(props){
