@@ -14,6 +14,7 @@ class LoginModal extends Component{
       };
       this.onChange = this.onChange.bind(this);
       this.onSubmit = this.onSubmit.bind(this);
+      this.registerUser = this.registerUser.bind(this);
   }
  
   onChange = event => {
@@ -44,23 +45,37 @@ class LoginModal extends Component{
     userData.alias = this.state.alias;
     userData.username = this.state.username;
     userData.password = this.state.password;
-    
-    // fetch("http://localhost:5000", {
-    //     method: 'POST',
-    //     body: JSON.stringify(userData),
-    //     headers: {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json'
-    //       }
-    // }) 
-    // .then(res => res.json())
-    // .then(res => console.log('Success:', res))
-    // .catch(error => console.error('Error:', error));
+    console.log('New user data', JSON.stringify(userData));
+
+    // axios.post('http://localhost:5000/auth/register', userData)
+    // .then(res => {
+    //     console.log('Res', res);
+    // });
+
+    fetch('/auth/register', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+        },
+        redirect: "follow",
+        referrer: "no-referrer",
+        body: JSON.stringify(userData)
+    })
+    .then(res => res.json())
+    .then(response => console.log('Success:', response))
+    .catch(error => console.error('Error:', error));
+
+    this.setState({
+        username: "",
+        password: "",
+        name: "",
+        alias: "",
+        confirm_password: ""
+    });
   }
 
   render() {
-    //   const {username, password, name, alias, confirm_password} = this.state;
-
     return(
         <div className="modal fade" id="modalLRForm" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div className="modal-dialog cascading-modal" role="document">
@@ -77,7 +92,7 @@ class LoginModal extends Component{
                     <div className="tab-content">
                         <div className="tab-pane fade in show active" id="panel7" role="tabpanel">
                             <div className="modal-body mb-1">
-                                <form className="login-form" onSubmit={(event => this.onSubmit(event))}>
+                                <form className="login-form" action="http://localhost:5000/auth/login" method="post" onSubmit={(event => this.onSubmit(event))}>
                                 <div className="md-form form-sm mb-5">
                                     <i className="fa fa-envelope prefix"></i>
                                     <input type="email" id="login_username" className="form-control form-control-sm validate" 
@@ -112,7 +127,7 @@ class LoginModal extends Component{
     
                          
                             <div className="modal-body">
-                                <form className="login-form" onSubmit={(event => this.registerUser(event))}>
+                                <form onSubmit={(this.registerUser)} className="login-form" >
                                 <div className="md-form form-sm mb-5">
                                     <i className="fa fa-user prefix"></i>
                                     <input type="text" id="name" className="form-control form-control-sm validate"

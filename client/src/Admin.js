@@ -46,17 +46,17 @@ class Admin extends Component {
   }
 
   componentDidMount(){
-    fetch(`/users`, {method: "GET"})
-    .then((res) => res.text())
-    .then((text) => JSON.parse(text))
-    .then((data) => {
-      this.setState({
-        userList: data
-      });
-    })
-    .then(() => {
-      console.log(this.state.userList);
-    })
+    // fetch(`/users`, {method: "GET"})
+    // .then((res) => res.text())
+    // .then((text) => JSON.parse(text))
+    // .then((data) => {
+    //   this.setState({
+    //     userList: data
+    //   });
+    // })
+    // .then(() => {
+    //   console.log(this.state.userList);
+    // })
   }
 
   userEditHidden() {
