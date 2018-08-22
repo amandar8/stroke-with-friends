@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-// import './index.css';
 import './canvas.css';
+import openSocket from 'socket.io-client';
 
-import openSocket from 'socket.io-client'
+
 const socket = openSocket('http://localhost:8000');
 class Canvas extends Component {
     constructor(props) {
@@ -95,25 +95,34 @@ class Canvas extends Component {
 
     render() { 
         return (
-            <div className="row">
-                <canvas className="whiteboard" onMouseDown={this.mouseDown.bind(this)} onMouseUp={this.mouseUp.bind(this)} onMouseMove={this.mouseMove.bind(this)} ref='canvas'
-                // socketDrawLine={this.socketDrawLine.bind(this)}
-
-                ></canvas>
-
-                <div className="colors">
-                <div className="color black" onClick={(e)=>this.colorChange(e)}></div>
-                <div className="color red" onClick={(e)=>this.colorChange(e)}></div>
-                <div className="color green" onClick={(e)=>this.colorChange(e)}></div>
-                <div className="color blue" onClick={(e)=>this.colorChange(e)}></div>
-                <div className="color yellow" onClick={(e)=>this.colorChange(e)}></div>
+            <div>
+                <div className="row d-flex justify-content-center">
+                    <div className="col-11">
+                        <h3>Canvas</h3>
+                        <canvas className="whiteboard border" 
+                                onMouseDown={this.mouseDown.bind(this)} 
+                                onMouseUp={this.mouseUp.bind(this)} 
+                                onMouseMove={this.mouseMove.bind(this)} 
+                                ref='canvas'>
+                        {/* socketDrawLine={this.socketDrawLine.bind(this)}*/}
+                        </canvas>
+                    </div>
                 </div>
-            
+                <div className="row d-flex justify-content-center">
+                    <div className="col-11">
+                        <div className="colors">
+                        <div className="color black" onClick={(e)=>this.colorChange(e)}></div>
+                        <div className="color red" onClick={(e)=>this.colorChange(e)}></div>
+                        <div className="color green" onClick={(e)=>this.colorChange(e)}></div>
+                        <div className="color blue" onClick={(e)=>this.colorChange(e)}></div>
+                        <div className="color yellow" onClick={(e)=>this.colorChange(e)}></div>
+                    </div>
+                </div>
                 <script src="/socket.io/socket.io.js"></script>
-
                 {/* {this.mainLoop()} */}
-                {/* {(e)=>this.socketDrawLine(e)} */}
+                {/* {(e)=>this.socketDrawLine(e)} */}  
             </div>
+        </div>
         );
     }
 }

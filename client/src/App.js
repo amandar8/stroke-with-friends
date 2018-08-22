@@ -13,7 +13,8 @@ class App extends Component {
         <div id="app-container" className="container-fluid">
           <div className="row">
             <div className="col-12">
-              {/* <Route exact path="/" component={WelcomeCanvas} /> */}
+              <Route exact path="/" component={WelcomeCanvas} />
+              <hr/>
               <Canvas/>
             </div>
           </div>
