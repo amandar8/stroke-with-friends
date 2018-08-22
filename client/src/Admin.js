@@ -36,12 +36,27 @@ class Admin extends Component {
   constructor(props){
     super(props)
     this.state = {
-      adminRights: props.isAdmin,
+      adminRights: false,
       editUserHidden: true,
       editGroupHidden: true,
+      userList: [],
     }
     this.userEditHidden = this.userEditHidden.bind(this);
     this.groupEditHidden = this.groupEditHidden.bind(this);
+  }
+
+  componentDidMount(){
+    fetch(`/users`, {method: "GET"})
+    .then((res) => res.text())
+    .then((text) => JSON.parse(text))
+    .then((data) => {
+      this.setState({
+        userList: data
+      });
+    })
+    .then(() => {
+      console.log(this.state.userList);
+    })
   }
 
   userEditHidden() {
@@ -59,15 +74,8 @@ class Admin extends Component {
   }
 
   render(){
-    let userList = [];
-    for(let i=0; i<10; i++){
-      userList.push('username');
-    }
-    let groupList = [];
-    for(let i=0; i<5; i++){
-      groupList.push('GroupName');
-    }
-    return(
+
+    return (
       <div className="row d-flex justify-content-center">
         <div className="col-11">
           <h3>Admin Panel</h3>
@@ -92,28 +100,8 @@ class Admin extends Component {
               <h6>Registered users</h6>
               <ul>
                 {
-                  userList.map((user, index) =>{
-                    return <li key={index}>{user}</li>;
-                  })
-                }
-              </ul>
-            </div>
-            <div className='col-4'>
-              <h6>Active Users</h6>
-              <ul>
-                {
-                  userList.map((user, index) =>{
-                    return <li key={index}>{user}</li>;
-                  })
-                }
-              </ul>
-            </div>
-            <div className='col-4'>
-              <h6>Groups</h6>
-              <ul>
-                {
-                  groupList.map((group, index) =>{
-                    return <li key={index}>{group}</li>;
+                  this.state.userList.map((user, index) =>{
+                    return <li key={index}>{user.username}</li>;
                   })
                 }
               </ul>

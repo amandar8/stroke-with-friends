@@ -15,6 +15,7 @@ class App extends Component {
               <Route exact path="/" component={WelcomeCanvas} />
             </div>
           </div>
+          <Admin />
         </div>
       </Router>
     );
