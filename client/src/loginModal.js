@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import {withRouter, BrowserRouter} from 'react-router-dom';
 import './login.css';
 
-class Loginmodal extends Component{
+class LoginModal extends Component{
   constructor(props){
     super(props);
 
@@ -166,4 +165,4 @@ class Loginmodal extends Component{
   }
 }
 
-export default withRouter(Loginmodal);
+export default LoginModal;
