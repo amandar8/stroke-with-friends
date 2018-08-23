@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node server.js",
+    "start": "concurrently \"node server.js\" \"node socket-server.js\"",
     "heroku-postbuild": "cd client && yarn && yarn run build",
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "socket": "nodemon socket-server.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn socket\" \"yarn client\""
   },
   "dependencies": {
     "auth0-js": "^9.7.3",
@@ -21,7 +22,10 @@
     "knex": "^0.15.2",
     "method-override": "^3.0.0",
     "morgan": "~1.9.0",
-    "pg": "^7.4.3"
+    "pg": "^7.4.3",
+    "react-color": "^2.14.1",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1"
   },
   "devDependencies": {
     "concurrently": "^3.5.0"
