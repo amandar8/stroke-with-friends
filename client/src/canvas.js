@@ -7,7 +7,6 @@ const socket = openSocket('http://localhost:8000');
 class Canvas extends Component {
     constructor(props) {
         super(props);
-        this.display = React.createRef();
         this.state = {
             click: false,
             move: false,
@@ -20,6 +19,7 @@ class Canvas extends Component {
             data: {}
           }
         this.handleData = this.handleData.bind(this);
+        
     }
 
     componentDidMount() {
@@ -31,10 +31,10 @@ class Canvas extends Component {
             let line = data.line.position;
             let color = data.line.color;
             context.beginPath();
-            context.moveTo(line[0].x * window.innerWidth, line[0].y * window.innerHeight);
-            context.lineTo(line[1].x * window.innerWidth, line[1].y * window.innerHeight);
+            context.moveTo(line[0].x * canvas.width, line[0].y * canvas.height);
+            context.lineTo(line[1].x * canvas.width, line[1].y * canvas.height);
             context.strokeStyle = color;
-            context.lineWidth = 2;
+            context.lineWidth = 1;
             context.stroke();
         }); 
     }
@@ -64,11 +64,14 @@ class Canvas extends Component {
     }
 
     mouseMove(e) {
+        console.log('w:' + e.target.width, 'mp:'+ e.clientX);
+        console.log('h:' + e.target.height, 'mp:'+ e.clientY);
+        const canvas = this.refs.canvas;
     // normalize mouse position to range 0.0 - 1.0
         this.setState({
             pos: {
-                x: e.clientX / e.target.width,
-                y: e.clientY / e.target.height,
+                x: (e.pageX - canvas.offsetLeft) / canvas.width,
+                y: (e.pageY - canvas.offsetTop) / canvas.height,
                 },
             move: true
         });
@@ -95,35 +98,42 @@ class Canvas extends Component {
 
     render() { 
         return (
-            <div>
-                <div className="row d-flex justify-content-center">
-                    <div className="col-11">
-                        <h3>Canvas</h3>
-                        <canvas className="whiteboard border" 
-                                onMouseDown={this.mouseDown.bind(this)} 
-                                onMouseUp={this.mouseUp.bind(this)} 
-                                onMouseMove={this.mouseMove.bind(this)} 
-                                ref='canvas'>
-                        {/* socketDrawLine={this.socketDrawLine.bind(this)}*/}
-                        </canvas>
-                    </div>
-                </div>
-                <div className="row d-flex justify-content-center">
-                    <div className="col-11">
-                        <div className="colors">
-                        <div className="color black" onClick={(e)=>this.colorChange(e)}></div>
-                        <div className="color red" onClick={(e)=>this.colorChange(e)}></div>
-                        <div className="color green" onClick={(e)=>this.colorChange(e)}></div>
-                        <div className="color blue" onClick={(e)=>this.colorChange(e)}></div>
-                        <div className="color yellow" onClick={(e)=>this.colorChange(e)}></div>
-                    </div>
-                </div>
-                <script src="/socket.io/socket.io.js"></script>
-                {/* {this.mainLoop()} */}
-                {/* {(e)=>this.socketDrawLine(e)} */}  
+        <div className="p-0">
+            <h3>Canvas</h3>
+            <canvas className="whiteboard border p-0" height="600" width="800" 
+                    onMouseDown={this.mouseDown.bind(this)} 
+                    onMouseUp={this.mouseUp.bind(this)} 
+                    onMouseMove={this.mouseMove.bind(this)} 
+                    ref='canvas'>
+            </canvas>
+
+            <div className="colors">
+            <div className="color black" onClick={(e)=>this.colorChange(e)}></div>
+            <div className="color red" onClick={(e)=>this.colorChange(e)}></div>
+            <div className="color green" onClick={(e)=>this.colorChange(e)}></div>
+            <div className="color blue" onClick={(e)=>this.colorChange(e)}></div>
+            <div className="color yellow" onClick={(e)=>this.colorChange(e)}></div>
+            <script src="/socket.io/socket.io.js"></script>
             </div>
         </div>
         );
+    }
+
+    componentWillUpdate() {
+        const canvas = this.refs.canvas;
+        const context = canvas.getContext('2d');
+
+        // draw line received from server
+        socket.on('draw_line', function (data) {
+            let line = data.line.position;
+            let color = data.line.color;
+            context.beginPath();
+            context.moveTo(line[0].x * canvas.width, line[0].y * canvas.height);
+            context.lineTo(line[1].x * canvas.width, line[1].y * canvas.height);
+            context.strokeStyle = color;
+            context.lineWidth = 1;
+            context.stroke();
+        }); 
     }
 }
  
