@@ -100,41 +100,41 @@ class Edit extends Component{
                                 <div className="tab-pane fade in show active" id="panel7" role="tabpanel">
                                     <div className="modal-body mb-1">
                                         <form className="login-form" onSubmit={(event => this.onSubmit(event))}>
-                                            <div class="modal-header">
+                                            <div className="modal-header">
                                                 <h2>Stroke With Friends Edit User Profile</h2>
                                             </div>
 
                                             <div className="md-form form-sm mb-5">
                                                 <i className="fa fa-user prefix"></i>
-                                                <input type="text" id="name" className="form-control form-control-sm validate"
+                                                <input type="text" className="form-control form-control-sm validate"
                                                 name="name" value={this.state.name} onChange={this.onChange}/>
                                                 <label data-error="wrong" data-success="right" htmlFor="name">New Full Name</label>
                                             </div>
 
                                             <div className="md-form form-sm mb-5">
                                                 <i className="fa fa-user-secret prefix"></i>
-                                                <input type="text" id="alias" className="form-control form-control-sm validate"
+                                                <input type="text" className="form-control form-control-sm validate"
                                                 name="alias" value={this.state.alias} onChange={this.onChange}/>
                                                 <label data-error="wrong" data-success="right" htmlFor="alias">New Alias</label>
                                             </div>
 
                                             <div className="md-form form-sm mb-5">
                                                 <i className="fa fa-envelope prefix"></i>
-                                                <input type="email" autoComplete='off' id="username" className="form-control form-control-sm validate"
+                                                <input type="email" autoComplete='off' className="form-control form-control-sm validate"
                                                 name="username" value={this.state.username} onChange={this.onChange}/>
                                                 <label data-error="wrong" data-success="right" htmlFor="username">New Email</label>
                                             </div>
 
                                             <div className="md-form form-sm mb-5">
                                                 <i className="fa fa-lock prefix"></i>
-                                                <input type="password" id="password" className="form-control form-control-sm validate"
+                                                <input type="password" className="form-control form-control-sm validate"
                                                 name="password" value={this.state.password} onChange={this.onChange}/>
                                                 <label data-error="wrong" data-success="right" htmlFor="password">New Password</label>
                                             </div>
     
                                             <div className="md-form form-sm mb-4">
                                                 <i className="fa fa-lock prefix"></i>
-                                                <input type="password" id="confirm_password" className="form-control form-control-sm validate"
+                                                <input type="password" className="form-control form-control-sm validate"
                                                 name="confirm_password" value={this.state.confirm_password} onChange={this.onChange}/>
                                                 <label data-error="wrong" data-success="right" htmlFor="confirm_password">Confirm password</label>
                                             </div>
