@@ -3,8 +3,6 @@ import './canvas.css';
 import openSocket from 'socket.io-client';
 import {ChromePicker} from 'react-color'
 
-
-
 const socket = openSocket('http://localhost:8000/');
 class Canvas extends Component {
     constructor(props) {
@@ -23,7 +21,6 @@ class Canvas extends Component {
             data: {}
           }
         this.handleData = this.handleData.bind(this);
-        
     }
 
     componentDidMount() {
