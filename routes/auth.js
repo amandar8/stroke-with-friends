@@ -29,8 +29,7 @@ router.post('/register', (req, res, next) => {
 
 
 
-
-router.post('/', (req, res, next) => {
+router.post('/register', (req, res, next) => {
   if (req.body.username && req.body.password) {
     let enterUsername = new Error('Please enter username and password')
     knex('users')
@@ -47,7 +46,7 @@ router.post('/', (req, res, next) => {
 });
 
 /* POST user listing. */
-router.post('/', (req, res, next) => {
+router.post('/register', (req, res, next) => {
   let usernameTaken = new Error('Username is already taken');
   const user = {};
 
