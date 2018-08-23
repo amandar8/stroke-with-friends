@@ -92,15 +92,17 @@ class Edit extends Component{
 
     render() {
         return(
-            <div className="modal fade" id="modalLRForm" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div className="modal fade" id="edit_form" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div className="modal-dialog cascading-modal" role="document">
                     <div className="modal-content">
                         <div className="modal-c-tabs">
-
                             <div className="tab-content">
                                 <div className="tab-pane fade in show active" id="panel7" role="tabpanel">
                                     <div className="modal-body mb-1">
                                         <form className="login-form" onSubmit={(event => this.onSubmit(event))}>
+                                            <div class="modal-header">
+                                                <h2>Stroke With Friends Edit User Profile</h2>
+                                            </div>
 
                                             <div className="md-form form-sm mb-5">
                                                 <i className="fa fa-user prefix"></i>
@@ -146,6 +148,7 @@ class Edit extends Component{
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
