@@ -4,6 +4,7 @@ import WelcomeCanvas from './WelcomeCanvas';
 import Admin from './Admin';
 import Canvas from './canvas'
 import './App.css';
+import Profile from "./Profile"
 // import Login from './loginButton';
 
 class App extends Component {
@@ -16,10 +17,13 @@ class App extends Component {
               <Route exact path="/" component={WelcomeCanvas} />
               <hr/>
               <Canvas/>
+              <hr/>
+              <Profile />
             </div>
           </div>
           {/* <Admin /> */}
         </div>
+
       </Router>
     );
   }
