@@ -28,3 +28,9 @@
 .color.yellow {
     background-color: yellow;
 }
+
+.brushSize {
+    display: inline-block;
+    height: 48px;
+    width: 48px;
+}
