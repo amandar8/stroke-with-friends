@@ -14,6 +14,7 @@ const methodOverride = require('method-override');
 const port = process.env.PORT || 5000;
 
 const app = express();
+app.listen(port);
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
@@ -85,7 +86,6 @@ app.use(function(err, req, res, next) {
 
 app.use(express.static(__dirname + '/public'));
 
-app.listen(port);
 console.log(`Listening on port: ${port}`);
 
 
