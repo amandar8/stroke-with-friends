@@ -11,7 +11,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 
-const port = process.env.EXPRESS_SERVER || 5000;
+const port = process.env.PORT || 5000;
 
 const app = express();
 const server = require('http').createServer(app);
