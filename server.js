@@ -14,18 +14,28 @@ const port = process.env.PORT || 8000;
 
 const app = express();
 
-// const indexRoute = require('./routes/index');
-const usersRoute = require('./routes/users');
+
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+    res.append('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type');
+    next();
+});
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(logger('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(methodOverride("_method"));
 
-// app.use('/', indexRoute);
+const authRoute = require('./routes/auth');
+const usersRoute = require('./routes/users');
+
+app.use('/auth', authRoute);
 app.use('/users', usersRoute);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

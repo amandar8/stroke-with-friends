@@ -6,16 +6,17 @@ class LoginModal extends Component{
     super(props);
 
     this.state = {
-        email: "",
+        username: "",
         password: "",
-        full_name: "",
+        name: "",
         alias: "",
-        new_email: "",
-        new_password: "",
         confirm_password: "",
       };
       this.onChange = this.onChange.bind(this);
       this.onSubmit = this.onSubmit.bind(this);
+      this.registerUser = this.registerUser.bind(this);
+      this.loginUser = this.loginUser.bind(this);
+      this.handleClearForm = this.handleClearForm.bind(this);
   }
  
   onChange = event => {
@@ -26,37 +27,91 @@ class LoginModal extends Component{
 
   onSubmit = event => {
     event.preventDefault();
-    this.props.history.push("/thank-you");
-    }
-
-  validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
-  }
+}
 
   registerUser(event) {
     event.preventDefault();
-    let userData = {};
-    userData.name = this.state.full_name;
-    userData.alias = this.state.alias;
-    userData.username = this.state.email;
-    userData.password = this.state.new_password;
 
-    // fetch('url here', {
-    //     method: 'POST',
-    //     body: JSON.stringify(userData),
-    //     headers: {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json'
-    //       }
-    // }) 
-    // .then(res => res.json())
-    // .then(reponse => console.log('Success:',response))
-    // .catch(error => console.error('Error:', error));
+    if (this.state.password !== this.state.confirm_password) {
+        alert('Passwords don\'t match');
+        return;
+    }
+
+    let userData = {};
+    userData.name = this.state.name;
+    userData.alias = this.state.alias;
+    userData.username = this.state.username;
+    userData.password = this.state.password;
+    console.log('New user data', JSON.stringify(userData));
+
+
+    fetch(`/auth/register`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+        },
+        redirect: "follow",
+        referrer: "no-referrer",
+        body: JSON.stringify(userData)
+    })
+    .then(res => res.json())
+    .then(response => console.log('Success:', response))
+    .catch(error => console.error('Error:', error));
+
+    this.setState({
+        username: "",
+        password: "",
+        name: "",
+        alias: "",
+        confirm_password: ""
+    });
+    this.handleClearForm(event);
+  }
+ 
+
+  loginUser(event) {
+    event.preventDefault();
+    let existingUser = {};
+    existingUser.username = this.state.username;
+    existingUser.password = this.state.password;
+    console.log('Pulled user data', JSON.stringify(existingUser));
+
+    fetch(`/users/username/${this.state.username}`, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+        },
+        redirect: "follow",
+        referrer: "no-referrer",
+    })
+    .then(res => res.json())
+    .then(response => console.log('Success:', response))
+    .catch(error => console.error('Error:', error));
+
+    this.setState({
+        username: "",
+        password: "",
+        name: "",
+        alias: "",
+        confirm_password: ""
+    });
+    this.handleClearForm(event);
   }
 
-  render() {
-      const {email, password, full_name, alias, new_email, new_password, confirm_password} = this.state;
+  handleClearForm(event) {
+    event.preventDefault();
+  this.setState({
+    username: "",
+    password: "",
+    name: "",
+    alias: "",
+    confirm_password: ""
+  });
+}
 
+  render() {
     return(
         <div className="modal fade" id="modalLRForm" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div className="modal-dialog cascading-modal" role="document">
@@ -73,22 +128,22 @@ class LoginModal extends Component{
                     <div className="tab-content">
                         <div className="tab-pane fade in show active" id="panel7" role="tabpanel">
                             <div className="modal-body mb-1">
-                                <form className="login-form" onSubmit={(event => this.onSubmit(event))}>
+                                <form onSubmit={(this.loginUser)} className="login-form" autoComplete="off" id="login_form" action="http://localhost:5000/auth/login" method="get">
                                 <div className="md-form form-sm mb-5">
                                     <i className="fa fa-envelope prefix"></i>
-                                    <input type="email" id="email" className="form-control form-control-sm validate" 
-                                    name="email" value={email} onChange={this.onChange}/>
-                                    <label data-error="wrong" data-success="right" htmlFor="email">Your email</label>
+                                    <input type="email" id="login_username" className="form-control form-control-sm validate" 
+                                    name="username" autoComplete="new-password" value={this.state.username} onChange={this.onChange}/>
+                                    <label data-error="wrong" data-success="right" htmlFor="login_username">Your email</label>
                                 </div>
     
                                 <div className="md-form form-sm mb-4">
                                     <i className="fa fa-lock prefix"></i>
-                                    <input type="password" id="password" className="form-control form-control-sm validate"
-                                    name="password" value={password} onChange={this.onChange}/>
-                                    <label data-error="wrong" data-success="right" htmlFor="password">Your password</label>
+                                    <input type="password" id="login_password" className="form-control form-control-sm validate"
+                                    name="password" autoComplete="new-password" value={this.state.password} onChange={this.onChange}/>
+                                    <label data-error="wrong" data-success="right" htmlFor="login_password">Your password</label>
                                 </div>
                                 <div className="text-center mt-2">
-                                    <button className="btn btn-info" disabled={!this.validateForm()}>Log in <i className="fa fa-sign-in ml-1"></i></button>
+                                    <button className="btn btn-info" >Log in <i className="fa fa-sign-in ml-1"></i></button>
                                 </div>
                                 </form>
                             </div>
@@ -108,45 +163,46 @@ class LoginModal extends Component{
     
                          
                             <div className="modal-body">
-                            <div className="md-form form-sm mb-5">
+                                <form onSubmit={(this.registerUser)} className="login-form" autoComplete="off" action="http://localhost:5000/auth/login" method="post" >
+                                <div className="md-form form-sm mb-5">
                                     <i className="fa fa-user prefix"></i>
-                                    <input type="text" id="full_name" className="form-control form-control-sm validate"
-                                    name="full_name" value={full_name} onChange={this.onChange}/>
-                                    <label data-error="wrong" data-success="right" htmlFor="full_name">Your Full Name</label>
+                                    <input type="text" id="name" className="form-control form-control-sm validate"
+                                    name="name" autoComplete="new-password" value={this.state.name} onChange={this.onChange}/>
+                                    <label data-error="wrong" data-success="right" htmlFor="name">Your Full Name</label>
                                 </div>
 
                                <div className="md-form form-sm mb-5">
                                     <i className="fa fa-user-secret prefix"></i>
                                     <input type="text" id="alias" className="form-control form-control-sm validate"
-                                    name="alias" value={alias} onChange={this.onChange}/>
+                                    name="alias" autoComplete="new-password" value={this.state.alias} onChange={this.onChange}/>
                                     <label data-error="wrong" data-success="right" htmlFor="alias">Create An Alias</label>
                                 </div>
 
                                 <div className="md-form form-sm mb-5">
                                     <i className="fa fa-envelope prefix"></i>
-                                    <input type="email" id="new_email" className="form-control form-control-sm validate"
-                                    name="new_email" value={new_email} onChange={this.onChange}/>
-                                    <label data-error="wrong" data-success="right" htmlFor="new_email">Your email</label>
+                                    <input type="email" id="username" className="form-control form-control-sm validate"
+                                    name="username" autoComplete="new-password" value={this.state.username} onChange={this.onChange}/>
+                                    <label data-error="wrong" data-success="right" htmlFor="username">Your email</label>
                                 </div>
     
                                 <div className="md-form form-sm mb-5">
                                     <i className="fa fa-lock prefix"></i>
-                                    <input type="password" id="new_password" className="form-control form-control-sm validate"
-                                    name="new_password" value={new_password} onChange={this.onChange}/>
-                                    <label data-error="wrong" data-success="right" htmlFor="new_password">Your password</label>
+                                    <input type="password" id="password" className="form-control form-control-sm validate"
+                                    name="password" autoComplete="new-password" onChange={this.onChange}/>
+                                    <label data-error="wrong" data-success="right" htmlFor="password">Your password</label>
                                 </div>
     
                                 <div className="md-form form-sm mb-4">
                                     <i className="fa fa-lock prefix"></i>
                                     <input type="password" id="confirm_password" className="form-control form-control-sm validate"
-                                    name="confirm_password" value={confirm_password} onChange={this.onChange}/>
+                                    name="confirm_password" autoComplete="new-password" value={this.state.confirm_password} onChange={this.onChange}/>
                                     <label data-error="wrong" data-success="right" htmlFor="confirm_password">Confirm password</label>
                                 </div>
     
                                 <div className="text-center form-sm mt-2">
-                                    <button className="btn btn-info" disabled={!this.validateForm()}> Sign up <i className="fa fa-sign-in ml-1"></i></button>
+                                    <button className="btn btn-info"> Sign up <i className="fa fa-sign-in ml-1"></i></button>
                                 </div>
-    
+                                </form>
                             </div>
                             
                             <div className="modal-footer">
@@ -164,5 +220,7 @@ class LoginModal extends Component{
     );
   }
 }
+
+
 
 export default LoginModal;
