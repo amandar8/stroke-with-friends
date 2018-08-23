@@ -3,7 +3,7 @@ import './canvas.css';
 import openSocket from 'socket.io-client';
 
 
-const socket = openSocket('http://localhost:8000');
+const socket = openSocket('https://stroke-with-friends.herokuapp.com:8000');
 class Canvas extends Component {
     constructor(props) {
         super(props);
