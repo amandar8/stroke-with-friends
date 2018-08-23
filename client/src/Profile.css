@@ -1,11 +1,19 @@
 h3 {
     font-family: 'Rock Salt', cursive;
-    font-size: 3em;
+    font-size: 30em;
     color: black;
     text-align: center;
-margin: 15px;
+    margin: 15px;
   }
 
 .App-header {
       background-color: antiquewhite;
   }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+}
+
