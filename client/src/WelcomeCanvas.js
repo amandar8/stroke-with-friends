@@ -46,7 +46,7 @@ class WelcomeCanvas extends Component {
       .enter()
       .append('rect');
 
-      let rectAttrs = rectangles
+      rectangles
       .attr("x", function(d) {return d.x})
       .attr("y", function(d) {return d.y})
       .attr("height", function(d) {return d.height})
@@ -75,17 +75,19 @@ class WelcomeCanvas extends Component {
 
   render() {
     return (
-      <div id="svg-container" className="row mb-5 view-height d-flex justify-content-center">
-        <span className="raise-header text-center position-header p-4 bg-white rounded">
-          <h2>Welcome to...</h2>
-          <h1>Stroke with Friends</h1>
-          <div className="login-btn-container">
-            <button type="button" className="btn btn-lg btn-primary" id="login-button" data-toggle="modal" data-target="#modalLRForm">
-            Log In
-            </button>
+      <div id="svg-container" className="row mb-5 view-height">
+        <div className="col-12 d-flex justify-content-center">
+          <span className="raise-header text-center position-header p-4 bg-white rounded">
+            <h2>Welcome to...</h2>
+            <h1>Stroke with Friends</h1>
+            <div className="login-btn-container">
+              <button type="button" className="btn btn-lg btn-primary" id="login-button" data-toggle="modal" data-target="#modalLRForm">
+              Log In
+              </button>
+            </div>
+            <Login />
+          </span>
           </div>
-          <Login />
-        </span>
         <svg id="welcome-canvas"></svg>
       </div>
     )
