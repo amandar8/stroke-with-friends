@@ -3,7 +3,7 @@ import './canvas.css';
 import openSocket from 'socket.io-client';
 import {ChromePicker} from 'react-color';
 
-const socket = openSocket('https://stroke-with-friends.herokuapp.com/:8000');
+const socket = openSocket(window.location.hostname);
 class Canvas extends Component {
     constructor(props) {
         super(props);
