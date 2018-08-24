@@ -97,15 +97,32 @@ class Admin extends Component {
             </div>
           </div>
           <div className='row'>
-            <div className='col-4'>
+            <div className='col-8'>
               <h6>Registered users</h6>
-              <ul>
+              <table className="table">
+                <thead className="thead-light">
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>User Name</th>
+                    <th>Alias</th>
+                    <th>Admin Status</th>
+                  </tr>
+                </thead>
                 {
                   this.state.userList.map((user, index) =>{
-                    return <li key={index}>{user.username}</li>;
+                    return (
+                    <tr key={index}>
+                      <td>{user.id}</td>
+                      <td>{user.name}</td>
+                      <td>{user.username}</td>
+                      <td>{user.alias}</td>
+                      <td>{user.admin}</td>
+                    </tr>
+                    );
                   })
                 }
-              </ul>
+              </table>
             </div>
           </div>
         </div>
