@@ -3,7 +3,7 @@ import './canvas.css';
 import openSocket from 'socket.io-client';
 import {ChromePicker} from 'react-color'
 
-const socket = openSocket('http://localhost:8000/');
+const socket = openSocket('http://10.8.2.236:8000/');
 class Canvas extends Component {
     constructor(props) {
         super(props);
