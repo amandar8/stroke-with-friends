@@ -79,8 +79,7 @@ class LoginModal extends Component{
     event.preventDefault();
     let existingUser = {};
     existingUser.username = this.state.username;
-    existingUser.password = this.state.password;
-
+  
     fetch(`/users/username/${this.state.username}`, {
         method: 'GET',
         mode: 'cors',
@@ -91,8 +90,12 @@ class LoginModal extends Component{
         referrer: "no-referrer",
     })
     .then(res => res.json())
+    .then((userData) => {
+        document.getElementById('close-modal').click();
+        return userData;
+    })
     .then(userData => {
-        this.props.activeUser(userData);
+        this.props.activateUser(userData);
     })
     .catch(error => console.error('Error:', error));
 
@@ -143,9 +146,10 @@ class LoginModal extends Component{
                                 </div>
     
                                 <div className="md-form form-sm mb-4">
+                                <i className="fa fa-lock prefix"></i>
                                     <input type="password" id="login_password" className="form-control form-control-sm validate"
                                     name="password" autoComplete="new-password" value={this.state.password} onChange={this.onChange}/>
-                                    <label data-error="wrong" data-success="right" htmlFor="login_password"><i className="fa fa-lock prefix">Your password</i></label>
+                                    <label data-error="wrong" data-success="right" htmlFor="login_password">Your password</label>
                                 </div>
                                 <div className="text-center mt-2">
                                     <button className="btn btn-info" >Log in <i className="fa fa-sign-in ml-1"></i></button>
