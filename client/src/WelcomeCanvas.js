@@ -85,7 +85,7 @@ class WelcomeCanvas extends Component {
               Log In
               </button>
             </div>
-            <Login showProfile={this.props.showProfile} userData={this.state.activeUser}/>
+            <Login showProfile={this.props.showProfile} activeUser={this.props.activeUser}/>
           </span>
           </div>
         <svg id="welcome-canvas"></svg>

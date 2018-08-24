@@ -42,7 +42,6 @@ class LoginModal extends Component{
     userData.alias = this.state.alias;
     userData.username = this.state.username;
     userData.password = this.state.password;
-    console.log('New user data', JSON.stringify(userData));
 
 
     fetch(`/auth/register`, {
@@ -86,7 +85,6 @@ class LoginModal extends Component{
     let existingUser = {};
     existingUser.username = this.state.username;
     existingUser.password = this.state.password;
-    console.log('Pulled user data', JSON.stringify(existingUser));
 
     fetch(`/users/username/${this.state.username}`, {
         method: 'GET',

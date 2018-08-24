@@ -42,7 +42,7 @@ class App extends Component {
         <div id="app-container" className="container-fluid">
           <div className="row">
             <div className="col-12">
-              {!this.state.welcome && <WelcomeCanvas props={this.props} showProfile={this.showProfile} userData={this.state.activeUser}/>}
+              {!this.state.welcome && <WelcomeCanvas props={this.props} showProfile={this.showProfile} activeUser={this.state.activeUser}/>}
               {!this.state.canvas && <Canvas props={this.props}/>}
               {!this.state.profile && <Profile props={this.props} />}
               {!this.state.admin && <Admin props={this.props}/>}

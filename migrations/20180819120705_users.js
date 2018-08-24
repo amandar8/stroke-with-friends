@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
     table.string('password').notNullable();
     table.string('alias').notNullable();
     table.string('name');
-    table.string('admin').notNullable().defaultTo(false);
+    table.string('admin');
   });
   
 };
