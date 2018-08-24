@@ -18,13 +18,13 @@ class App extends Component {
       activeUser: null,
     }
     this.showProfile = this.showProfile.bind(this);
-    this.activeUser = this.activeUser.bind(this);
+    this.activateUser = this.activateUser.bind(this);
     this.showCanvas = this.showCanvas.bind(this);
     this.showAdmin = this.showAdmin.bind(this);
     this.showWelcome = this.showWelcome.bind(this);
   }
 
-  showProfile(event) {
+  showProfile() {
     this.setState({
       profile: false,
       welcome: true,
@@ -63,10 +63,11 @@ class App extends Component {
     })
   }
 
-  activeUser(userData){
+  activateUser(userData){
     this.setState({
       activeUser: userData
     });
+    this.showProfile();
   }
 
   render() {
@@ -75,7 +76,7 @@ class App extends Component {
         <div id="app-container" className="container-fluid">
           <div className="row">
             <div className="col-12">
-              {!this.state.welcome && <WelcomeCanvas props={this.props} showProfile={this.showProfile} showCanvas={this.showCanvas} showAdmin={this.showAdmin} activeUser={this.state.activeUser}/>}
+              {!this.state.welcome && <WelcomeCanvas props={this.props} showProfile={this.showProfile} showCanvas={this.showCanvas} showAdmin={this.showAdmin} activeUser={this.state.activeUser} activateUser={this.activeUser}/>}
               {!this.state.canvas && <Canvas props={this.props} showWelcome={this.showWelcome}/>}
               {!this.state.profile && <Profile props={this.props} showWelcome={this.showWelcome} showCanvas={this.showCanvas} activeUser={this.state.activeUser}/>}
               {!this.state.admin && <Admin props={this.props} showWelcome={this.showWelcome} showCanvas={this.showCanvas} activeUser={this.state.activeUser}/>}

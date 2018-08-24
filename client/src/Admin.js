@@ -53,10 +53,7 @@ class Admin extends Component {
       this.setState({
         userList: data
       });
-    })
-    .then(() => {
-      console.log(this.state.userList);
-    })
+    });
   }
 
   userEditHidden() {
