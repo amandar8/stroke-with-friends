@@ -10,6 +10,7 @@ class Profile extends Component {
         this.state = {
             response: null,
             id: null,
+            data: null,
         }; 
     }
    
@@ -30,7 +31,7 @@ class Profile extends Component {
                 referrer: "no-referrer"
             })
             .then(responce => responce.json())
-            .then(data => this.setState({ data }))
+            .then(data => this.setState({data: data}))
             .catch(error => console.error('Error:', error));
         }
     }
@@ -39,14 +40,11 @@ class Profile extends Component {
 
     render() {
         return (
-
             <div>
                 <header className="App-header">
                     <h3 className="App-title">{header}</h3>
                 </header>
-
                 <div className="container-fluid">
-
                     <div className="col-11">
                             <div className="col-xs-12 p-3 text-left">
                                 <p>Name: {'Jake Lewis'}</p>

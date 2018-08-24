@@ -56,7 +56,18 @@ class LoginModal extends Component{
         body: JSON.stringify(userData)
     })
     .then(res => res.json())
-    .then(response => console.log('Success:', response))
+    .then(response => {
+        /*
+            THIS SENDS THE NEW USER DATA TO THE APP COMPONENT
+        */
+        this.props.userData(response);
+    })
+    .then(() => {
+        /*
+            THIS REVEALS THE PROFILE PAGE AND HIDES ALL OTHER COMPONENTS
+        */
+        this.props.showProfile();
+    })
     .catch(error => console.error('Error:', error));
 
     this.setState({
@@ -87,15 +98,17 @@ class LoginModal extends Component{
         referrer: "no-referrer",
     })
     .then(res => res.json())
-    .then(response => console.log('Success:', response))
+    .then(userData => {
+        this.props.activeUser(userData);
+    })
     .catch(error => console.error('Error:', error));
 
     this.setState({
-        username: "",
-        password: "",
-        name: "",
-        alias: "",
-        confirm_password: ""
+        username: null,
+        password: null,
+        name: null,
+        alias: null,
+        confirm_password: null,
     });
     this.handleClearForm(event);
   }

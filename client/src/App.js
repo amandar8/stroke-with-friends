@@ -11,17 +11,29 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isHidden: {
-        welcome: false,
-        profile: true,
-        admin: true,
-        canvas: true,
-      },
+      welcome: false,
+      profile: true,
+      admin: true,
+      canvas: true,
+      activeUser: null,
     }
+    this.showProfile = this.showProfile.bind(this);
+    this.activeUser = this.activeUser.bind(this);
   }
 
-  handleHidden() {
+  showProfile() {
+    this.setState({
+      profile: false,
+      welcome: true,
+      admin: true,
+      canvas: true,
+    });
+  }
 
+  activeUser(userData){
+    this.setState({
+      activeUser: userData
+    });
   }
 
   render() {
@@ -30,10 +42,10 @@ class App extends Component {
         <div id="app-container" className="container-fluid">
           <div className="row">
             <div className="col-12">
-              {!this.state.isHidden.welcome && <WelcomeCanvas props={this.props}/>}
-              {!this.state.isHidden.canvas && <Canvas props={this.props}/>}
-              {!this.state.isHidden.profile && <Profile props={this.props}/>}
-              {!this.state.isHidden.admin && <Admin props={this.props}/>}
+              {!this.state.welcome && <WelcomeCanvas props={this.props} showProfile={this.showProfile} userData={this.state.activeUser}/>}
+              {!this.state.canvas && <Canvas props={this.props}/>}
+              {!this.state.profile && <Profile props={this.props} />}
+              {!this.state.admin && <Admin props={this.props}/>}
             </div>
           </div>
         </div>
