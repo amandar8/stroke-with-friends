@@ -108,7 +108,7 @@ class Canvas extends Component {
 
     render() { 
         return (
-        <div className="row pt-0 d-flex align-items-end">
+        <div className="row pt-0">
             <div className="col-8">
                 <h3>Canvas</h3>
                 <a href="/" onClick={(event) => this.props.showWelcome(event)}>Return Home</a>
@@ -119,11 +119,21 @@ class Canvas extends Component {
                         ref='canvas'>
                 </canvas>
             </div>
-            <div className="col-3 colors">
-                <ChromePicker className="" color={this.state.brushColor} onChangeComplete={this.handleColorChange.bind(this)}></ChromePicker>
-                <div className="brushSize" onClick={(e)=>this.brushSizeChange(e, 1)}>1</div>
-                <div className="brushSize" onClick={(e)=>this.brushSizeChange(e, 5)}>5</div>
-                <div className="brushSize" onClick={(e)=>this.brushSizeChange(e, 10)}>10</div>
+            <div className="col-3 mt-5 colors">
+                <div className='row'>
+                  <div className="col-12">
+                  <h5>Color Selector</h5>
+                  <ChromePicker color={this.state.brushColor} onChangeComplete={this.handleColorChange.bind(this)}></ChromePicker>
+                  </div>
+                </div>
+                <div className="row mb-4 mt-4">
+                    <div className="col-12">
+                        <h5>Brush Size</h5>
+                        <div className="brushSize one rounded mr-3 cursor-pointer text-center border" onClick={(e)=>this.brushSizeChange(e, 1)}>1</div>
+                        <div className="brushSize five rounded mr-3 cursor-pointer text-center border" onClick={(e)=>this.brushSizeChange(e, 5)}>5</div>
+                        <div className="brushSize ten rounded mr-3 cursor-pointer text-center border" onClick={(e)=>this.brushSizeChange(e, 10)}>10</div>
+                    </div>
+                </div>
                 <script src="/socket.io/socket.io.js"></script>
             </div>
         </div>
