@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "concurrently \"node server.js\" \"node socket-server.js\"",
+    "start": "node server.js",
     "heroku-postbuild": "cd client && yarn && yarn run build",
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "auth0-js": "^9.7.3",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
     "d3": "^5.6.0",
