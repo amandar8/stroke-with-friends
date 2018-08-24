@@ -75,6 +75,7 @@ class Canvas extends Component {
         });
         // check if the user is drawing
         if (this.state.click && this.state.pos_prev) {
+            canvas.getContext("2d").lineCap = "round";
             // send line to to the server
             socket.emit('draw_line', {
                 line: {
