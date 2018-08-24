@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import './Profile.css'
 //import users from "./routes/users.js";
-import App from './App';
 import Edit from './Edit.js';
-import WelcomeCanvas from "./WelcomeCanvas";
 
 let header = 'Stroke With Friends Profile';
 

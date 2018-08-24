@@ -21,7 +21,7 @@ class App extends Component {
               <Profile />
             </div>
           </div>
-          {/* <Admin /> */}
+          <Admin />
         </div>
 
       </Router>

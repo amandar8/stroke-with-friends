@@ -30,7 +30,6 @@ class Canvas extends Component {
         // draw line received from server
         socket.on('draw_line', function (data) {
             let line = data.line.position;
-            let color = data.line.color;
             context.beginPath();
             context.moveTo(line[0].x * canvas.width, line[0].y * canvas.height);
             context.lineTo(line[1].x * canvas.width, line[1].y * canvas.height);
@@ -80,7 +79,6 @@ class Canvas extends Component {
             socket.emit('draw_line', {
                 line: {
                     position: [this.state.pos, this.state.pos_prev],
-                    color: this.state.color,
                     brushSize: this.state.brushSize,
                     color: {
                         r: this.state.brushColor.r,
@@ -140,7 +138,6 @@ class Canvas extends Component {
         // draw line received from server
         socket.on('draw_line', function (data) {
             let line = data.line.position;
-            let color = data.line.color;
             context.beginPath();
             context.moveTo(line[0].x * canvas.width, line[0].y * canvas.height);
             context.lineTo(line[1].x * canvas.width, line[1].y * canvas.height);
