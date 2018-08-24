@@ -111,7 +111,7 @@ class Canvas extends Component {
         <div className="row pt-0">
             <div className="col-8">
                 <h3>Canvas</h3>
-                <a href="/" onClick={(event) => this.props.showWelcome(event)}>Return Home</a>
+                <a href="/" onClick={(event) => this.props.showWelcome(event)}>Return Home</a><br />
                 <canvas className="whiteboard border p-0" height="600" width="800" 
                         onMouseDown={this.mouseDown.bind(this)} 
                         onMouseUp={this.mouseUp.bind(this)} 

@@ -56,9 +56,10 @@ class LoginModal extends Component{
     })
     .then(res => res.json())
     .then(response => {
-        /*
-            THIS SENDS THE NEW USER DATA TO THE APP COMPONENT
-        */
+        document.getElementById('close-modal').click();
+        return response;
+    })
+    .then((response) => {
         this.props.activateUser(response);
     })
     .catch(error => console.error('Error:', error));
@@ -156,7 +157,7 @@ class LoginModal extends Component{
                                 <div className="options text-center text-md-right mt-1">
                                     <p>Forgot <a href="" className="blue-text">Password?</a></p>
                                 </div>
-                                <button type="button" className="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
+                                <button id="close-modal" type="button" className="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
                             </div>
     
                         </div>

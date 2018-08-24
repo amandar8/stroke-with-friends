@@ -63,13 +63,12 @@ class App extends Component {
       welcome: false,
       admin: true,
       canvas: true,
-      activeUser: null,
     })
   }
 
   activateUser(userData){
     this.setState({
-      activeUser: userData
+      activeUser: userData[0]
     });
     this.showProfile();
   }

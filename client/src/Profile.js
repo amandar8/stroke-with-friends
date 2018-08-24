@@ -43,7 +43,8 @@ class Profile extends Component {
             <div>
            <header className="App-header text-dark">
              <h3>User Profile</h3>
-             <a href="/" onClick={(event) => this.props.showWelcome(event)}>Return Home</a>
+             <a href="/" onClick={(event) => this.props.showWelcome(event)}>Return Home</a><br />
+             <a href="/" onClick={(event) => (this.props.showCanvas(event))}>Go to Canvas</a>
            </header>
            <div className="container-fluid p-0 ">
              <div className="row bodySize m-0">
@@ -64,9 +65,9 @@ class Profile extends Component {
                     </div>
                     
                     <div>
-                       <div>Email
+                       <div>Name
                        </div>
-                       <div className="profileInfoColor d-flex"><div className="icon-backgroundColor"><i className="fas fa-envelope mx-2"></i></div>{this.props.activeUser.email}
+                       <div className="profileInfoColor d-flex"><div className="icon-backgroundColor"><i className="fas fa-envelope mx-2"></i></div>{this.props.activeUser.name}
                       </div>
                     </div>
 
