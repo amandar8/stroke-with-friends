@@ -1,16 +1,47 @@
 h3 {
     font-family: 'Rock Salt', cursive;
   }
-
   h2 {
     font-family: 'Rock Salt', cursive;
     font-size: 24px;
   }
-
 .App-header {
       background-color: antiquewhite;
   }
+.bodySize {
+  height: 100vh;
+  width: 100%;
+}
+.fullWidth{
+  width: 100%;
+}
 
+
+.profilePictureSize {
+  object-fit: cover;
+  height: 250px;
+}
+.profileInfoColor {
+  background-color: #efefef;
+}
+.fullHeight {
+  height: 100%;
+}
+
+/* .marginx-auto {
+    margin-right: auto !important;
+    margin-left: auto !important;
+} */
+
+.profileInfo {
+    height: 60%;
+    font-size: 28px;
+}
+
+
+ .blue {
+   background-color: blue;
+ } 
 footer {
     position: fixed;
     bottom: 0;
@@ -18,3 +49,6 @@ footer {
     left: 0;
 }
 
+.icon-backgroundColor {
+    background-color: #dcdcdc;
+}

@@ -12,7 +12,7 @@ class App extends Component {
     super(props);
     this.state = {
       welcome: false,
-      profile: true,
+      profile: false,
       admin: true,
       canvas: true,
       activeUser: null,
