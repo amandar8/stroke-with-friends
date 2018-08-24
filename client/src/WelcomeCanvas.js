@@ -86,6 +86,7 @@ class WelcomeCanvas extends Component {
               </button>
             </div>
             <a href="/" onClick={(event) => (this.props.showCanvas(event))}>Go to Canvas</a><br />
+            <a href="/" onClick={(event) => (this.props.showProfile(event))}>Profile Page</a><br />
             <a href="/" onClick={(event) => (this.props.showAdmin(event))}>Admin Page</a>
             <Login showProfile={this.props.showProfile} activeUser={this.props.activeUser}/>
           </span>

@@ -24,7 +24,8 @@ class App extends Component {
     this.showWelcome = this.showWelcome.bind(this);
   }
 
-  showProfile() {
+  showProfile(event) {
+    event.preventDefault();
     this.setState({
       profile: false,
       welcome: true,

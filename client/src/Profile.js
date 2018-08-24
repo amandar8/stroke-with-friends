@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import './Profile.css'
 import Edit from './Edit.js';
 
-let header = 'Stroke With Friends Profile';
+
 
 class Profile extends Component {
     constructor(props){
@@ -19,40 +19,73 @@ class Profile extends Component {
         this.props.auth.logout();
     }
 
-    componentDidMount() {
-        if (this.state.id !== undefined && this.state.id !== null){
-            fetch(`/users/id/${this.state.id}`, { 
-                method: 'GET',
-                mode: 'cors',
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8"
-                },
-                redirect: "follow",
-                referrer: "no-referrer"
-            })
-            .then(responce => responce.json())
-            .then(data => this.setState({data: data}))
-            .catch(error => console.error('Error:', error));
-        }
-    }
+    // componentDidMount() {
+    //     if (this.state.id !== undefined && this.state.id !== null){
+    //         fetch(`/users/id/${this.state.id}`, { 
+    //             method: 'GET',
+    //             mode: 'cors',
+    //             headers: {
+    //                 "Content-Type": "application/json; charset=utf-8"
+    //             },
+    //             redirect: "follow",
+    //             referrer: "no-referrer"
+    //         })
+    //         .then(responce => responce.json())
+    //         .then(data => this.setState({data: data}))
+    //         .catch(error => console.error('Error:', error));
+    //     }
+    // }
 
 
 
     render() {
         return (
             <div>
-                <header className="App-header">
-                    <h3 className="App-title">{header}</h3>
-                </header>
-                <div className="container-fluid">
-                    <div className="col-11">
-                            <div className="col-xs-12 p-3 text-left">
-                                <p>Name: {'Jake Lewis'}</p>
-                                <p>Alias: {'N.J.B.'}</p>
-                                <p>Email: {'jake@strokewithfriends.com'}</p>
-                            </div>
+           <header className="App-header text-dark">
+             <h3>User Profile</h3>
+             <a href="/" onClick={(event) => this.props.showWelcome(event)}>Return Home</a>
+           </header>
+           <div className="container-fluid p-0 ">
+             <div className="row bodySize m-0">
+               <div className="col-3 blue p-0 "> 
+                 <img src="https://picsum.photos/200/300?man" className="fullWidth profilePictureSize"></img>
+               </div>
+               <div className="col-9 p-0">
+                 <div className="container-fluid fullHeight p-0">
+                 <div className="row fullHeight d-flex justify-content-center">
+                 <div className="col-8 profileInfo d-flex flex-column justify-content-between mt-5">
+                   {/* <section className=""> */}
+                     
+                    <div>
+                       <div>Username
+                       </div>
+                        <div className="profileInfoColor d-flex"><div className="icon-backgroundColor"><i className="fas fa-user-alt mx-2"></i></div>{this.props.activeUser.username}
+                        </div>
                     </div>
-                </div>
+                    
+                    <div>
+                       <div>Email
+                       </div>
+                       <div className="profileInfoColor d-flex"><div className="icon-backgroundColor"><i className="fas fa-envelope mx-2"></i></div>{this.props.activeUser.email}
+                      </div>
+                    </div>
+
+                     <div>
+                       <div>Alias
+                       </div>
+                       <div className="profileInfoColor d-flex"><div className="icon-backgroundColor"><i className="fas fa-shield-alt mx-2"></i></div>{this.props.activeUser.alias}
+                       </div>
+                    </div>
+
+
+                   {/* </section> */}
+                   </div>
+                   </div>
+                 </div>
+
+               </div>
+             </div>
+           </div>
                 <Edit />
                 <div>
                     <button type="button" className="btn btn-secondary m-3 float-left">New Strokes</button>
