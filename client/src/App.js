@@ -25,7 +25,9 @@ class App extends Component {
   }
 
   showProfile(event) {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
     this.setState({
       profile: false,
       welcome: true,
@@ -61,6 +63,7 @@ class App extends Component {
       welcome: false,
       admin: true,
       canvas: true,
+      activeUser: null,
     })
   }
 
@@ -77,7 +80,7 @@ class App extends Component {
         <div id="app-container" className="container-fluid">
           <div className="row">
             <div className="col-12">
-              {!this.state.welcome && <WelcomeCanvas props={this.props} showProfile={this.showProfile} showCanvas={this.showCanvas} showAdmin={this.showAdmin} activeUser={this.state.activeUser} activateUser={this.activeUser}/>}
+              {!this.state.welcome && <WelcomeCanvas props={this.props} showProfile={this.showProfile} showCanvas={this.showCanvas} showAdmin={this.showAdmin} activeUser={this.state.activeUser} activateUser={this.activateUser}/>}
               {!this.state.canvas && <Canvas props={this.props} showWelcome={this.showWelcome}/>}
               {!this.state.profile && <Profile props={this.props} showWelcome={this.showWelcome} showCanvas={this.showCanvas} activeUser={this.state.activeUser}/>}
               {!this.state.admin && <Admin props={this.props} showWelcome={this.showWelcome} showCanvas={this.showCanvas} activeUser={this.state.activeUser}/>}

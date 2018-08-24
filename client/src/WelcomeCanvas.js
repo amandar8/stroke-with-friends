@@ -8,7 +8,16 @@ class WelcomeCanvas extends Component {
     super(props)
     this.state ={
       props: props,
+      toggleModal: true,
     }
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  toggleModal(event) {
+    event.preventDefault();
+    this.setState({
+      toggleModal: !this.state.toggleModal,
+    })
   }
 
   componentDidMount() {
@@ -81,14 +90,14 @@ class WelcomeCanvas extends Component {
             <h2>Welcome to...</h2>
             <h1>Stroke with Friends</h1>
             <div className="login-btn-container">
-              <button type="button" className="btn btn-lg btn-primary" id="login-button" data-toggle="modal" data-target="#modalLRForm">
+              <button onClick={(event) => this.toggleModal(event)}type="button" className="btn btn-lg btn-primary" id="login-button" data-toggle="modal" data-target="#modalLRForm">
               Log In
               </button>
             </div>
             <a href="/" onClick={(event) => (this.props.showCanvas(event))}>Go to Canvas</a><br />
             <a href="/" onClick={(event) => (this.props.showProfile(event))}>Profile Page</a><br />
             <a href="/" onClick={(event) => (this.props.showAdmin(event))}>Admin Page</a>
-            <Login showProfile={this.props.showProfile} activeUser={this.props.activeUser}/>
+            <Login showProfile={this.props.showProfile} activateUser={this.props.activateUser} toggleModal={this.toggleModal}/>
           </span>
           </div>
         <svg id="welcome-canvas"></svg>

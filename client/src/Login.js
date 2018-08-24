@@ -59,13 +59,7 @@ class LoginModal extends Component{
         /*
             THIS SENDS THE NEW USER DATA TO THE APP COMPONENT
         */
-        this.props.userData(response);
-    })
-    .then(() => {
-        /*
-            THIS REVEALS THE PROFILE PAGE AND HIDES ALL OTHER COMPONENTS
-        */
-        this.props.showProfile();
+        this.props.activateUser(response);
     })
     .catch(error => console.error('Error:', error));
 
