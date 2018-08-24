@@ -85,7 +85,9 @@ class WelcomeCanvas extends Component {
               Log In
               </button>
             </div>
-            <Login showProfile={this.props.showProfile} userData={this.state.activeUser}/>
+            <a href="/" onClick={(event) => (this.props.showCanvas(event))}>Go to Canvas</a><br />
+            <a href="/" onClick={(event) => (this.props.showAdmin(event))}>Admin Page</a>
+            <Login showProfile={this.props.showProfile} activeUser={this.props.activeUser}/>
           </span>
           </div>
         <svg id="welcome-canvas"></svg>

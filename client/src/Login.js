@@ -42,7 +42,6 @@ class LoginModal extends Component{
     userData.alias = this.state.alias;
     userData.username = this.state.username;
     userData.password = this.state.password;
-    console.log('New user data', JSON.stringify(userData));
 
 
     fetch(`/auth/register`, {
@@ -86,7 +85,6 @@ class LoginModal extends Component{
     let existingUser = {};
     existingUser.username = this.state.username;
     existingUser.password = this.state.password;
-    console.log('Pulled user data', JSON.stringify(existingUser));
 
     fetch(`/users/username/${this.state.username}`, {
         method: 'GET',
@@ -151,7 +149,7 @@ class LoginModal extends Component{
                                 <div className="md-form form-sm mb-4">
                                     <input type="password" id="login_password" className="form-control form-control-sm validate"
                                     name="password" autoComplete="new-password" value={this.state.password} onChange={this.onChange}/>
-                                    <label data-error="wrong" data-success="right" htmlFor="login_password">Your password</label>
+                                    <label data-error="wrong" data-success="right" htmlFor="login_password"><i className="fa fa-lock prefix">Your password</i></label>
                                 </div>
                                 <div className="text-center mt-2">
                                     <button className="btn btn-info" >Log in <i className="fa fa-sign-in ml-1"></i></button>
