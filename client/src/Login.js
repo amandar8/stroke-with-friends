@@ -148,10 +148,9 @@ class LoginModal extends Component{
                                 </div>
     
                                 <div className="md-form form-sm mb-4">
-                                    <i className="fa fa-lock prefix"></i>
                                     <input type="password" id="login_password" className="form-control form-control-sm validate"
                                     name="password" autoComplete="new-password" value={this.state.password} onChange={this.onChange}/>
-                                    <label data-error="wrong" data-success="right" htmlFor="login_password">Your password</label>
+                                    <label data-error="wrong" data-success="right" htmlFor="login_password"><i className="fa fa-lock prefix">Your password</i></label>
                                 </div>
                                 <div className="text-center mt-2">
                                     <button className="btn btn-info" >Log in <i className="fa fa-sign-in ml-1"></i></button>

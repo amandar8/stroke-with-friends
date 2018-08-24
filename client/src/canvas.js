@@ -108,9 +108,10 @@ class Canvas extends Component {
 
     render() { 
         return (
-        <div className="p-0 d-flex align-items-end">
-            <div>
-                <h3 className="">Canvas</h3>
+        <div className="row pt-0 d-flex align-items-end">
+            <div className="col-8">
+                <h3>Canvas</h3>
+                <a href="/" onClick={(event) => this.props.showWelcome(event)}>Return Home</a>
                 <canvas className="whiteboard border p-0" height="600" width="800" 
                         onMouseDown={this.mouseDown.bind(this)} 
                         onMouseUp={this.mouseUp.bind(this)} 
@@ -118,14 +119,12 @@ class Canvas extends Component {
                         ref='canvas'>
                 </canvas>
             </div>
-
-            <div className="colors">
-            <ChromePicker className="" color={this.state.brushColor} onChangeComplete={this.handleColorChange.bind(this)}></ChromePicker>
-            <div className="brushSize" onClick={(e)=>this.brushSizeChange(e, 1)}>1</div>
-            <div className="brushSize" onClick={(e)=>this.brushSizeChange(e, 5)}>5</div>
-            <div className="brushSize" onClick={(e)=>this.brushSizeChange(e, 10)}>10</div>
-
-            <script src="/socket.io/socket.io.js"></script>
+            <div className="col-3 colors">
+                <ChromePicker className="" color={this.state.brushColor} onChangeComplete={this.handleColorChange.bind(this)}></ChromePicker>
+                <div className="brushSize" onClick={(e)=>this.brushSizeChange(e, 1)}>1</div>
+                <div className="brushSize" onClick={(e)=>this.brushSizeChange(e, 5)}>5</div>
+                <div className="brushSize" onClick={(e)=>this.brushSizeChange(e, 10)}>10</div>
+                <script src="/socket.io/socket.io.js"></script>
             </div>
         </div>
         );
