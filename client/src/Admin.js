@@ -109,6 +109,7 @@ class Admin extends Component {
                     <th>Admin Status</th>
                   </tr>
                 </thead>
+                <tbody>
                 {
                   this.state.userList.map((user, index) =>{
                     return (
@@ -122,6 +123,7 @@ class Admin extends Component {
                     );
                   })
                 }
+                </tbody>
               </table>
             </div>
           </div>
