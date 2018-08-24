@@ -14,29 +14,9 @@ class Profile extends Component {
         }; 
     }
    
-
     logout() {
         this.props.auth.logout();
     }
-
-    // componentDidMount() {
-    //     if (this.state.id !== undefined && this.state.id !== null){
-    //         fetch(`/users/id/${this.state.id}`, { 
-    //             method: 'GET',
-    //             mode: 'cors',
-    //             headers: {
-    //                 "Content-Type": "application/json; charset=utf-8"
-    //             },
-    //             redirect: "follow",
-    //             referrer: "no-referrer"
-    //         })
-    //         .then(responce => responce.json())
-    //         .then(data => this.setState({data: data}))
-    //         .catch(error => console.error('Error:', error));
-    //     }
-    // }
-
-
 
     render() {
         return (
