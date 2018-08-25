@@ -22,6 +22,7 @@ class Canvas extends Component {
             canvas: [],
             isAdmin: this.props.admin || false,
             down: false,
+            brushShape: 'arc',
           }
         this.mouseMove = this.mouseMove.bind(this);
         this.mouseUp = this.mouseUp.bind(this);
@@ -44,11 +45,22 @@ class Canvas extends Component {
         const canvas = this.refs.canvas;
         const ctx = canvas.getContext('2d');
 
+
         socket.on('draw', function (dataArray) {
             dataArray.data.forEach(data => {
-                // switch (brushShape)
-                ctx.fillRect(data.data.x - data.data.brushSize/2, data.data.y - data.data.brushSize/2, data.data.brushSize, data.data.brushSize);
-                ctx.fillStyle = data.data.brushColor;
+                switch (data.data.brushShape) {
+                    case 'rect': 
+                        ctx.fillRect(data.data.x - data.data.brushSize/2, data.data.y - data.data.brushSize/2, data.data.brushSize, data.data.brushSize);
+                        ctx.fillStyle = data.data.brushColor;
+                    break;
+                    case 'arc':
+                        ctx.beginPath();
+                        ctx.arc(data.data.x - data.data.brushSize/2, data.data.y - data.data.brushSize/2, data.data.brushSize, 0, Math.PI * 2, false);
+                        ctx.fillStyle = data.data.brushColor;
+                        ctx.fill();
+                    break;
+                    default: break;
+                }
             });
         }); 
     }
@@ -69,7 +81,7 @@ class Canvas extends Component {
             step.y = e.pageY - canvas.offsetTop;
             step.brushSize = this.state.brushSize;
             step.brushColor = 'black';
-            //step.brushShape = this.state.brushShape;
+            step.brushShape = this.state.brushShape;
             socket.emit('draw', {
                 data: step,
             });
@@ -86,6 +98,12 @@ class Canvas extends Component {
     brushSize(size) {
         this.setState({
             brushSize: size,
+        })
+    }
+
+    brushShape(shape) {
+        this.setState({
+            brushShape: shape
         })
     }
 
@@ -118,8 +136,13 @@ class Canvas extends Component {
                         <div className="brushSize five rounded mr-3 cursor-pointer text-center border" onClick={() => this.brushSize(5)}>5</div>
                         <div className="brushSize ten rounded mr-3 cursor-pointer text-center border" onClick={() => this.brushSize(10)}>10</div>
                         <div className="brushSize ten rounded mr-3 cursor-pointer text-center border" onClick={() => this.brushSize(50)}>50</div>
-                        {this.state.isAdmin && <button type="button" className="btn btn-sm btn-default" onClick={(event) => this.clearCanvas(event)}>Clear Canvas</button>}
                     </div>
+                    <div className="col-12">
+                    <h5>Brush Shape</h5>
+                    <div className="brushSize ten rounded mr-3 cursor-pointer text-center border" onClick={() => this.brushShape('rect')}>Square</div>
+                        <div className="brushSize ten rounded mr-3 cursor-pointer text-center border" onClick={() => this.brushShape('arc')}>Circle</div>
+                    </div>
+                    {this.state.isAdmin && <button type="button" className="btn btn-sm btn-default" onClick={(event) => this.clearCanvas(event)}>Clear Canvas</button>}
                 </div>
                 <script src="/socket.io/socket.io.js"></script>
             </div>
