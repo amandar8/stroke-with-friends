@@ -6,33 +6,30 @@ const port = 8000;
 
 app.use(express.static(__dirname + '/public'));
 
-
-let line_history = [];
+let history = [];
 
 // event handler for incoming connections
 io.on('connection', (socket) => {
 
-    for (let i in line_history) {
-        socket.emit('draw_line', {
-            line: line_history[i]
-            
+        socket.emit('draw', {
+            data: history,
         });
-        console.log(line_history[i]);
-    }
 
     // add handler "draw_line" event.
-    socket.on('draw_line', (data) => {
-
-        //add recieved line to history
-        line_history.push(data.line);
-
-        // send line to all clients
-        io.emit('draw_line', {
-            line: data.line
-        });
-        console.log(data.line);
-
+    socket.on('draw', (data) => {
+        if (data.delete === true) {
+            history = [];
+        }
+        else {
+            history.push(data);
+        }
+        if (history.length > 0) {
+            io.emit('draw', {
+                data: history,
+            });
+        }
     });
+
 });
 io.listen(port);
 console.log('listening on port ', port);
