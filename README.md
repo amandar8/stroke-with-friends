@@ -2,6 +2,23 @@
 
 A collaborative painting application that allows users to draw on a public HTML canvas with any number of other users.
 
+## Usage
+  #### Get Dependencies:
+  `yarn install && cd client/ && yarn install`
+  #### Run:
+  `yarn dev`
+
+  Concurrently starts an instance of each server. The express server (server.js) acts as a proxy for the client server. 
+  ```  
+  ...
+    "client": "cd client && yarn start",
+    "server": "nodemon server.js",
+    "socket": "nodemon socket-server.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn socket\" \"yarn client\""
+  ...
+  ```
+
+
 ## User Stories
 
 **Users can access site features**
@@ -47,4 +64,17 @@ A collaborative painting application that allows users to draw on a public HTML 
 - Paired painting with a random user
 - Form groups and paint on a private canvas
 
+## To-do
 
+- Authenticate passwords on login
+- Enforce minimum password length
+- Add optional user image
+- Reduce the scope of Bootstrap Material design
+- Refactor to convert tab indents to spaces
+- Spoof routes so users can use the browser's fwd and back button
+- Re-render homepage animation on window resize
+- Socket should send and receive context data array rather than individual lines
+- Change brush stroke from lines to shapes (rect()/arc())
+- Scale brush stroke size with slider
+- Allow users to store a snapshot of the canvas
+- Allow users to access a personal canvas
