@@ -80,7 +80,7 @@ class App extends Component {
           <div className="row">
             <div className="col-12">
               {!this.state.welcome && <WelcomeCanvas props={this.props} showProfile={this.showProfile} showCanvas={this.showCanvas} showAdmin={this.showAdmin} activeUser={this.state.activeUser} activateUser={this.activateUser}/>}
-              {!this.state.canvas && <Canvas props={this.props} showWelcome={this.showWelcome}/>}
+              {!this.state.canvas && <Canvas props={this.props} showWelcome={this.showWelcome} admin={this.state.admin}/>}
               {!this.state.profile && <Profile props={this.props} showWelcome={this.showWelcome} showCanvas={this.showCanvas} activeUser={this.state.activeUser}/>}
               {!this.state.admin && <Admin props={this.props} showWelcome={this.showWelcome} showCanvas={this.showCanvas} activeUser={this.state.activeUser}/>}
             </div>

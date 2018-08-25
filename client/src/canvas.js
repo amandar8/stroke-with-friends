@@ -3,7 +3,7 @@ import './canvas.css';
 import openSocket from 'socket.io-client';
 import {ChromePicker} from 'react-color'
 
-const socket = openSocket('http://10.8.2.236:8000/');
+const socket = openSocket('localhost:8000');
 class Canvas extends Component {
     constructor(props) {
         super(props);
@@ -18,9 +18,20 @@ class Canvas extends Component {
             brushColor: {r:0, g: 0, b: 0, a: 255},
             pos_prev: false,
             brushSize: 1,
-            data: {}
+            data: {},
+            canvas: [],
+            isAdmin: this.props.admin || false,
           }
         this.handleData = this.handleData.bind(this);
+    }
+
+    clearCanvas(event) {
+        event.preventDefault();
+        console.log(this.state.isAdmin);
+        const ctx = document.getElementById('canvas').getContext('2d');
+        const emptyArray = new Uint8ClampedArray(480000 * 4);
+        const emptyData = new ImageData(emptyArray, 800, 600);
+        ctx.putImageData(emptyData, 0, 0);
     }
 
     componentDidMount() {
@@ -98,7 +109,7 @@ class Canvas extends Component {
                 x: this.state.pos.x,
                 y: this.state.pos.y
             }
-        });     
+        });    
     }
     brushSizeChange(e, size) {
         this.setState({
@@ -117,7 +128,8 @@ class Canvas extends Component {
                         onMouseDown={this.mouseDown.bind(this)} 
                         onMouseUp={this.mouseUp.bind(this)} 
                         onMouseMove={this.mouseMove.bind(this)} 
-                        ref='canvas'>
+                        ref='canvas'
+                        id='canvas'>
                 </canvas>
             </div>
             <div className="col-3 mt-5 colors">
@@ -133,6 +145,7 @@ class Canvas extends Component {
                         <div className="brushSize one rounded mr-3 cursor-pointer text-center border" onClick={(e)=>this.brushSizeChange(e, 1)}>1</div>
                         <div className="brushSize five rounded mr-3 cursor-pointer text-center border" onClick={(e)=>this.brushSizeChange(e, 5)}>5</div>
                         <div className="brushSize ten rounded mr-3 cursor-pointer text-center border" onClick={(e)=>this.brushSizeChange(e, 10)}>10</div>
+                        {!this.state.isAdmin && <button type="button" className="btn btn-sm btn-default" onClick={(event) => this.clearCanvas(event)}>Clear Canvas</button>}
                     </div>
                 </div>
                 <script src="/socket.io/socket.io.js"></script>
