@@ -14,8 +14,8 @@ class Canvas extends Component {
                 x: 0,
                 y: 0,
             },
-            color: 'black',
-            brushColor: {r:0, g: 0, b: 0, a: 255},
+            background: '#fff',
+            brushColor: 'black',
             pos_prev: false,
             brushSize: 10,
             data: {},
@@ -28,6 +28,7 @@ class Canvas extends Component {
         this.mouseUp = this.mouseUp.bind(this);
         this.mouseDown = this.mouseDown.bind(this);
         this.brushSize = this.brushSize.bind(this);
+        this.handleColorChange = this.handleColorChange.bind(this);
     }
 
     clearCanvas(event) {
@@ -80,7 +81,7 @@ class Canvas extends Component {
             step.x = e.pageX - canvas.offsetLeft;
             step.y = e.pageY - canvas.offsetTop;
             step.brushSize = this.state.brushSize;
-            step.brushColor = 'black';
+            step.brushColor = this.state.brushColor;
             step.brushShape = this.state.brushShape;
             socket.emit('draw', {
                 data: step,
@@ -107,6 +108,16 @@ class Canvas extends Component {
         })
     }
 
+    handleColorChange(color, event) {
+        this.setState({
+            brushColor: color.hex
+        })
+    }
+
+    handleChangeComplete = (color) => {
+        this.setState({ background: color.hex });
+      };
+
     render() { 
         return (
         <div className="row pt-0">
@@ -126,7 +137,7 @@ class Canvas extends Component {
                 <div className='row'>
                   <div className="col-12">
                   <h5>Color Selector</h5>
-                  <ChromePicker></ChromePicker>
+                  <ChromePicker onChange={ this.handleColorChange } color={ this.state.background } onChangeComplete={ this.handleChangeComplete }></ChromePicker>
                   </div>
                 </div>
                 <div className="row mb-4 mt-4">
