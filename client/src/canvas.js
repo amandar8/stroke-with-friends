@@ -8,17 +8,9 @@ class Canvas extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            click: false,
-            move: false,
-            pos: {
-                x: 0,
-                y: 0,
-            },
             background: '#fff',
             brushColor: 'black',
-            pos_prev: false,
             brushSize: 10,
-            data: {},
             canvas: [],
             isAdmin: this.props.admin || false,
             down: false,
