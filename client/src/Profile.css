@@ -45,4 +45,38 @@ footer {
 .icon-backgroundColor {
   background-color: #dcdcdc;
 }
-
+.sidebar {
+  /* width: 250px; */
+  height: 100%;
+  z-index: 1;
+  margin: 0px;
+  padding: 0px;
+  background-color: #fafafa;
+  border: 2px solid #efefef;
+}
+.sidebar ul.components {
+  padding: 20px 0;
+  /* border-bottom: 1px solid #47748b; */
+}
+.sidebar ul {
+  border-top: solid 1px #eaeaea;
+  height: 100%;
+}
+.sidebar ul p {
+  color: #fff;
+  padding: 10px;
+}
+.sidebar ul li a {
+  padding: 15px;
+  font-size: 1.1em;
+  display: block;
+}
+.sidebar ul li a:hover {
+  color: #17252b;
+  background: #dff2f1;
+  border-left: solid #17252b 10px;
+  font-weight: 700;
+}
+.sidebar a{
+  color: black
+}
