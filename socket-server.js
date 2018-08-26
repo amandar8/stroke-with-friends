@@ -24,12 +24,15 @@ io.on('connection', (socket) => {
             history.push(data);
         }
         if (history.length > 0) {
-            console.log("1", data.index);
             let slicedHistory = history.slice(data.index, history.length);
-            console.log(slicedHistory.length);
             io.emit('draw', {
                 data: slicedHistory,
             });
+        }
+        else {
+            io.emit('draw', {
+                data: history,
+            }); 
         }
     });
 

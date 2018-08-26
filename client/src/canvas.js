@@ -76,7 +76,6 @@ class Canvas extends Component {
             step.brushSize = this.state.brushSize;
             step.brushColor = this.state.brushColor;
             step.brushShape = this.state.brushShape;
-            console.log(this.state.lastRetrievalIndex);
             socket.emit('draw', {
                 data: step,
                 index: index,
