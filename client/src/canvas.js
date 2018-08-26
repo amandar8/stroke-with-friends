@@ -15,6 +15,7 @@ class Canvas extends Component {
             isAdmin: this.props.admin || false,
             down: false,
             brushShape: 'arc',
+            lastRetrievalIndex: 0,
           }
         this.mouseMove = this.mouseMove.bind(this);
         this.mouseUp = this.mouseUp.bind(this);
@@ -38,7 +39,6 @@ class Canvas extends Component {
         const canvas = this.refs.canvas;
         const ctx = canvas.getContext('2d');
 
-
         socket.on('draw', function (dataArray) {
             dataArray.data.forEach(data => {
                 switch (data.data.brushShape) {
@@ -55,7 +55,7 @@ class Canvas extends Component {
                     default: break;
                 }
             });
-        }); 
+        });
     }
 
     mouseDown(e) {
@@ -68,6 +68,7 @@ class Canvas extends Component {
     mouseMove(e) {
         e.preventDefault();
         if (this.state.down) {
+            const index = this.state.lastRetrievalIndex;
             const step = {}
             const canvas = document.getElementById('canvas');
             step.x = e.pageX - canvas.offsetLeft;
@@ -75,9 +76,14 @@ class Canvas extends Component {
             step.brushSize = this.state.brushSize;
             step.brushColor = this.state.brushColor;
             step.brushShape = this.state.brushShape;
+            console.log(this.state.lastRetrievalIndex);
             socket.emit('draw', {
                 data: step,
+                index: index,
             });
+            this.setState({
+                lastRetrievalIndex: this.state.lastRetrievalIndex + 1,
+            }) 
         }
     }
 
