@@ -115,6 +115,17 @@ class Canvas extends Component {
         this.setState({ background: color.hex });
       };
 
+    saveCanvas(event) {
+        event.preventDefault();
+        const canvas = document.getElementById('canvas').getContext('2d').getImageData();
+        fetch(`/users/canvas/${this.props.activeUser}`, {method: 'POST', body: canvas})
+        .then((res) => res.text())
+        .then((text) => JSON.stringify(text))
+        .then((data) => {
+            console.log(data)
+        })
+    }
+
     render() { 
         return (
         <div className="row pt-0">
@@ -151,6 +162,7 @@ class Canvas extends Component {
                         <div className="brushSize ten rounded mr-3 cursor-pointer text-center border" onClick={() => this.brushShape('arc')}>Circle</div>
                     </div>
                     {this.state.isAdmin && <button type="button" className="btn btn-sm btn-default" onClick={(event) => this.clearCanvas(event)}>Clear Canvas</button>}
+                    {this.state.isAdmin && <button type="button" className="btn btn-sm btn-secondary" onClick={(event) => this.saveCanvas(event)}>Save Canvas</button>}
                 </div>
                 <script src="/socket.io/socket.io.js"></script>
             </div>

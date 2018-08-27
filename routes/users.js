@@ -36,4 +36,16 @@ router.get('/alias/:alias', (req, res) => {
   });
 });
 
+router.post('/canvas/:username', (req, res) => {
+  console.log(hit);
+  knex('users')
+  .where('username', req.params.username)
+  .update({
+    canvas: req.body,
+  })
+  .then((user) => {
+    res.send(user)
+  })
+});
+
 module.exports = router;

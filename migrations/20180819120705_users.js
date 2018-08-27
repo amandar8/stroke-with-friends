@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
     table.string('alias').notNullable();
     table.string('name');
     table.string('admin');
+    table.json('canvasObj');
   });
   
 };
